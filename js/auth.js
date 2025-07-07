@@ -58,7 +58,13 @@ class AuthAPI {
             if (!contentType || !contentType.includes('application/json')) {
                 console.error('❌ Non-JSON response received:', contentType);
                 const text = await response.text();
-                console.error('❌ Response body:', text);
+                console.error('❌ Response body:', text.substring(0, 200) + '...');
+                
+                // If we get HTML, it means the server is not running
+                if (text.includes('<!DOCTYPE') || text.includes('<html>')) {
+                    throw new Error('🚫 El servidor de autenticación no está disponible. Por favor, contacta al administrador.');
+                }
+                
                 throw new Error(`Server error: ${response.status} ${response.statusText}`);
             }
 
