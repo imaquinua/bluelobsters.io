@@ -1,4 +1,4 @@
-# BlueLobers.io
+# BlueLobsters.io
 
 A comprehensive web application for marine lobster enthusiasts and professionals.
 
