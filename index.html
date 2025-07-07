@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueLobsters™ | Vibe Business Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #0B0B0B;
+        }
+        .blue-lobster-blue { color: #0071FF; }
+        .blue-lobster-bg { background-color: #0071FF; }
+        .deep-black { color: #0B0B0B; }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('img/fondo.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background-color: #e5e7eb;
+        }
+         .timeline-item:first-child::before {
+            top: 15px;
+        }
+        .timeline-item:last-child::before {
+            height: 15px;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -38px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #0071FF;
+            border: 3px solid #FFFFFF;
+        }
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        .carousel-container {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .carousel-item {
+            scroll-snap-align: start;
+        }
+        
+        /* Particle Background Styles */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #161713;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        /* Enhanced hero section for better particle visibility */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('img/fondo.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#inicio" class="text-xl font-black flex items-center gap-2 uppercase">
+                BlueLobsters™
+                <span class="text-xs font-bold blue-lobster-blue opacity-80 normal-case">| Rare is a Feature</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                 <a href="#posicionamiento" class="text-gray-600 hover:blue-lobster-blue">La Ventaja</a>
+                 <a href="#programa" class="text-gray-600 hover:blue-lobster-blue">El Programa</a>
+                 <a href="#experiencia" class="text-gray-600 hover:blue-lobster-blue">La Experiencia</a>
+                 <a href="#blog" class="text-gray-600 hover:blue-lobster-blue">Blog</a>
+                 <a href="#contacto" class="bg-blue-lobster-bg text-white font-bold py-2 px-5 rounded-lg text-sm hover:bg-blue-800 transition-colors">Hablar con un Asesor</a>
+            </div>
+            <button id="hamburger-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full sm:w-80 h-full bg-gray-900 text-white z-50 p-8 flex flex-col">
+        <button id="close-menu-button" class="self-end text-3xl mb-8">&times;</button>
+        <div class="flex flex-col space-y-6 text-xl text-center">
+            <a href="#posicionamiento" class="mobile-menu-link hover:blue-lobster-blue">La Ventaja</a>
+            <a href="#programa" class="mobile-menu-link hover:blue-lobster-blue">El Programa</a>
+            <a href="#experiencia" class="mobile-menu-link hover:blue-lobster-blue">La Experiencia</a>
+            <a href="#blog" class="mobile-menu-link hover:blue-lobster-blue">Blog</a>
+            <a href="#contacto" class="mobile-menu-link bg-blue-lobster-bg py-2 px-4 rounded-lg mt-8">Contactar</a>
+        </div>
+    </div>
+
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero-bg text-white py-24 md:py-40">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4 section-fade-in">Diseña el Error que el Mercado No Puede Ignorar.</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 section-fade-in" style="transition-delay: 150ms;">El Vibe Business Blueprint es un programa ejecutivo de 6 semanas que convierte a directivos en AI Vibe Architects. Plazas limitadas para una transformación garantizada.</p>
+                <a href="https://walink.co/3b8320" target="_blank" class="blue-lobster-bg text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-800 transition-all transform hover:scale-105 section-fade-in" style="transition-delay: 300ms;">
+                    Reservar mi lugar
+                </a>
+            </div>
+        </section>
+
+        <!-- Positioning Section -->
+        <section id="posicionamiento" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto section-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">El 99% compite. El 1% dicta el precio.</h2>
+                    <p class="text-lg text-gray-600">En un mercado de métricas clonadas y estrategias copiadas, la única ventaja competitiva real es ser irrepetible. Nuestro programa no te enseña a usar la IA, te enseña a codificar tu diferencia, convirtiendo tu ADN de marca en una patente tecnológica.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
+                    <div class="section-fade-in" style="transition-delay: 100ms;">
+                        <div class="p-6 bg-white rounded-full inline-block shadow-md mb-4"><i class="fas fa-certificate fa-2x blue-lobster-blue"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Executive Certificate</h3>
+                        <p class="text-gray-600">Recibe una credencial verificable que te acredita como AI Vibe Architect.</p>
+                    </div>
+                    <div class="section-fade-in" style="transition-delay: 200ms;">
+                        <div class="p-6 bg-white rounded-full inline-block shadow-md mb-4"><i class="fas fa-cogs fa-2x blue-lobster-blue"></i></div>
+                        <h3 class="text-xl font-bold mb-2">AI Growth Playbook</h3>
+                        <p class="text-gray-600">Sales con un plan de acción validado y tu primera automatización funcionando.</p>
+                    </div>
+                    <div class="section-fade-in" style="transition-delay: 300ms;">
+                        <div class="p-6 bg-white rounded-full inline-block shadow-md mb-4"><i class="fas fa-infinity fa-2x blue-lobster-blue"></i></div>
+                        <h3 class="text-xl font-bold mb-2">Hub de Recursos Vitalicio</h3>
+                        <p class="text-gray-600">Acceso permanente a plantillas, grabaciones y actualizaciones trimestrales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carousel Section -->
+        <section id="galeria" class="py-16 md:py-24">
+             <div class="container mx-auto px-6">
+                 <div class="text-center max-w-3xl mx-auto mb-12 section-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Un Vistazo al Laboratorio</h2>
+                    <p class="text-lg text-gray-600">Algunos aspectos que definitivamente cambiaran en tu vida</p>
+                </div>
+                <div class="relative section-fade-in">
+                    <div id="carousel-container" class="carousel-container flex overflow-x-auto gap-6 pb-4">
+                        <!-- Carousel Items -->
+                        <div class="carousel-item flex-none w-full sm:w-1/2 lg:w-1/3 group relative">
+                            <img src="img/img1.png" alt="Visualización de Datos" class="w-full h-full object-cover rounded-lg shadow-lg">
+                            <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                                <h3 class="text-white text-2xl font-bold">Visualización de Datos</h3>
+                            </div>
+                        </div>
+                         <div class="carousel-item flex-none w-full sm:w-1/2 lg:w-1/3 group relative">
+                            <img src="img/img2.png" alt="Automatizaciones" class="w-full h-full object-cover rounded-lg shadow-lg">
+                             <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                                <h3 class="text-white text-2xl font-bold">Automatizaciones</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item flex-none w-full sm:w-1/2 lg:w-1/3 group relative">
+                            <img src="img/img3.png" alt="Creatividad" class="w-full h-full object-cover rounded-lg shadow-lg">
+                             <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                                <h3 class="text-white text-2xl font-bold">Creatividad</h3>
+                            </div>
+                        </div>
+                        <div class="carousel-item flex-none w-full sm:w-1/2 lg:w-1/3 group relative">
+                            <img src="img/img4.png" alt="Productividad" class="w-full h-full object-cover rounded-lg shadow-lg">
+                             <div class="absolute inset-0 bg-black/70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg">
+                                <h3 class="text-white text-2xl font-bold">Productividad</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="prev-btn" class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white/70 rounded-full p-2 text-2xl shadow-md hover:bg-white transition-colors">&lt;</button>
+                    <button id="next-btn" class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white/70 rounded-full p-2 text-2xl shadow-md hover:bg-white transition-colors">&gt;</button>
+                </div>
+             </div>
+        </section>
+
+        <!-- Academic Architecture & Manifesto Section -->
+        <section id="programa" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-16 section-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Arquitectura Académica | 6 Semanas de Transformación</h2>
+                    <p class="text-lg text-gray-600">Cada sábado, de 9 am a 1 pm, nos sumergimos en un laboratorio presencial intensivo. Esta es tu hoja de ruta para convertirte en un arquitecto de IA.</p>
+                </div>
+                
+                <div class="relative max-w-3xl mx-auto">
+                    <!-- Timeline items -->
+                    <div class="timeline-item ml-8 md:ml-12 pl-8 pb-12 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 1</span>
+                        <h3 class="text-2xl font-bold mt-1">Kick-off & Mindset</h3>
+                        <p class="text-gray-600 mt-2">Panorama estratégico, riesgo-beneficio y el marco de AI Governance para liderar con responsabilidad.</p>
+                    </div>
+                     <div class="timeline-item ml-8 md:ml-12 pl-8 pb-12 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 2</span>
+                        <h3 class="text-2xl font-bold mt-1">Prompt Mastery & Cognitive Design</h3>
+                        <p class="text-gray-600 mt-2">Framework R.O.L.E.S, Chain-of-Thought avanzado y el diseño de AI Personas que blindan tu marca.</p>
+                    </div>
+                    <div class="timeline-item ml-8 md:ml-12 pl-8 pb-12 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 3</span>
+                        <h3 class="text-2xl font-bold mt-1">Brand Vibe Engineering</h3>
+                        <p class="text-gray-600 mt-2">Auditoría semántica con LLMs y taller práctico en Midjourney para generar Style-Guides dinámicos.</p>
+                    </div>
+                    <div class="timeline-item ml-8 md:ml-12 pl-8 pb-12 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 4</span>
+                        <h3 class="text-2xl font-bold mt-1">Intelligent Content Engines</h3>
+                        <p class="text-gray-600 mt-2">Construcción de workflows modulares (Notion + Zapier) para blogs, video-scripts y redes sociales.</p>
+                    </div>
+                     <div class="timeline-item ml-8 md:ml-12 pl-8 pb-12 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 5</span>
+                        <h3 class="text-2xl font-bold mt-1">Automation & Agent Builders</h3>
+                        <p class="text-gray-600 mt-2">Laboratorio práctico para conectar GPT con tus herramientas diarias e introducción a agentes orquestados.</p>
+                    </div>
+                    <div class="timeline-item ml-8 md:ml-12 pl-8 section-fade-in relative">
+                        <div class="timeline-dot"></div>
+                        <span class="text-sm font-bold blue-lobster-blue">SEMANA 6</span>
+                        <h3 class="text-2xl font-bold mt-1">Demo Day & Scaling Roadmap</h3>
+                        <p class="text-gray-600 mt-2">Presentación de tu Blueprint a un panel de expertos y la creación de tu roadmap de 90 días con métricas de ROI.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-3xl mx-auto mt-20 text-center section-fade-in">
+                    <div class="inline-block mb-4">
+                        <i class="fas fa-gem fa-2x blue-lobster-blue"></i>
+                    </div>
+                    <p class="text-xl font-bold blue-lobster-blue leading-relaxed">
+                        Ser un Blue Lobster no es un título, es una declaración. Es rechazar la marea de lo genérico y programar tu propia corriente. Es transformar la intuición en un sistema, la experiencia en un código. Es construir una ventaja tan única que el mercado no pueda copiarla, solo admirarla. Es, finalmente, ser el error perfecto en la simulación de los negocios.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience & Methodology Section -->
+        <section id="experiencia" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="text-center mb-12 section-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Una Experiencia, no una Clase</h2>
+                    <p class="text-lg text-gray-600">Olvídate de las diapositivas. Este es un laboratorio de ejecución.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="section-fade-in" style="transition-delay: 100ms;">
+                        <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-chalkboard-teacher blue-lobster-blue mr-3"></i>Laboratorio Presencial</h3>
+                        <p class="text-gray-700">Estaciones individuales y un entorno colaborativo en Miraflores (Av. Arequipa 4034) diseñado para el peer-review continuo y la aplicación inmediata.</p>
+                    </div>
+                     <div class="section-fade-in" style="transition-delay: 200ms;">
+                        <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-fire blue-lobster-blue mr-3"></i>Guest Fireside Chats</h3>
+                        <p class="text-gray-700">Conversaciones íntimas con líderes de IA corporativa y fundadores de startups tecnológicas locales que ya están aplicando estos principios.</p>
+                    </div>
+                     <div class="section-fade-in" style="transition-delay: 300ms;">
+                        <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-headset blue-lobster-blue mr-3"></i>Soporte Continuo</h3>
+                        <p class="text-gray-700">Office Hours virtuales cada miércoles para resolver dudas y una comunidad privada en Slack para soporte entre sesiones y networking.</p>
+                    </div>
+                    <div class="section-fade-in" style="transition-delay: 400ms;">
+                        <h3 class="text-xl font-bold mb-3 flex items-center"><i class="fas fa-archive blue-lobster-blue mr-3"></i>Materiales de Élite</h3>
+                        <p class="text-gray-700">Incluye tu Playbook en Notion, PDFs, grabaciones vitalicias de cada sesión, un kit de prompts y checklists de evaluación.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-16 md:py-24 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12 section-fade-in">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">BlueLobster Insights</h2>
+                    <p class="text-lg text-gray-600">Pensamientos disruptivos y estrategias de vanguardia</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                    <!-- Blog Post 1 -->
+                    <article class="section-fade-in bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                        <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-gray-500 font-medium">29 Dic 2024</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">
+                                <a href="blog_post_001.html" class="hover:blue-lobster-blue transition-colors">
+                                    El Fin de la Estrategia Tradicional: Por qué la IA Redefine las Reglas del Juego
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Las métricas que usabas ayer ya no sirven mañana. Descubre cómo los AI Vibe Architects están creando ventajas competitivas que la competencia ni siquiera puede ver.
+                            </p>
+                            <a href="blog_post_001.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="section-fade-in bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" style="transition-delay: 100ms;">
+                        <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-gray-500 font-medium">25 Dic 2024</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">
+                                <a href="blog_post_002.html" class="hover:blue-lobster-blue transition-colors">
+                                    Prompt Engineering: El Arte de Programar Creatividad
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                No es solo escribir instrucciones. Es diseñar sistemas de pensamiento que amplifican tu visión estratégica y convierten la intuición en algoritmos ejecutables.
+                            </p>
+                            <a href="blog_post_002.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="section-fade-in bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300" style="transition-delay: 200ms;">
+                        <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-sm text-gray-500 font-medium">20 Dic 2024</span>
+                            <h3 class="text-xl font-bold mt-2 mb-3">
+                                <a href="blog_post_003.html" class="hover:blue-lobster-blue transition-colors">
+                                    Brand Vibe Engineering: Cuando tu Marca se Convierte en Código
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Tu identidad de marca ya no es solo visual. Es un sistema cognitivo que se adapta, aprende y evoluciona. Así es como codificas tu ADN empresarial.
+                            </p>
+                            <a href="blog_post_003.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="text-center mt-12 section-fade-in">
+                    <a href="blog.html" class="blue-lobster-bg text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-800 transition-colors">
+                        Ver todos los artículos
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <section id="contacto" class="py-20 md:py-32 bg-gray-900 text-white">
+            <div class="container mx-auto px-6 text-center section-fade-in">
+                <h2 class="text-3xl md:text-5xl font-black mb-4">Solo 12 butacas. El tanque está listo.</h2>
+                <p class="text-lg text-gray-400 max-w-3xl mx-auto mb-6">Este programa es una inversión estratégica. Por USD 250 (Precio Early-Bird), aseguras una de las 12 únicas plazas para nuestro próximo cohorte ejecutivo.</p>
+                <p class="text-sm text-gray-500 mb-8">Compara con programas de INSEAD (USD 11,892), Wharton (USD 16,000) o Harvard (USD 1,850).</p>
+                <a href="https://walink.co/3b8320" target="_blank" class="bg-[#25D366] text-white font-bold py-4 px-8 rounded-lg text-xl hover:bg-green-600 transition-colors transform hover:scale-105 inline-block">
+                    <i class="fab fa-whatsapp mr-3"></i>Hablar con un Asesor y Reservar
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://walink.co/3b8320" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-40">
+        <i class="fab fa-whatsapp text-4xl"></i>
+    </a>
+
+    <footer class="bg-gray-800 text-gray-400 py-6">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2025 BlueLobsters™. Todos los derechos reservados. | Programa ejecutivo presencial en Miraflores, Lima, Perú.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Particles Animation
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId;
+
+            // Set canvas size
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 2;
+                    this.speedY = (Math.random() - 0.5) * 2;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.color = `rgba(0, 113, 255, ${this.opacity})`;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    // Wrap around edges
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+
+            // Create particles
+            function createParticles() {
+                particles = [];
+                const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            // Draw connections between nearby particles
+            function drawConnections() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            const opacity = (100 - distance) / 100 * 0.3;
+                            ctx.strokeStyle = `rgba(0, 113, 255, ${opacity})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Update and draw particles
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+
+                // Draw connections
+                drawConnections();
+
+                animationId = requestAnimationFrame(animate);
+            }
+
+            // Mouse interaction
+            let mouse = { x: null, y: null };
+            
+            canvas.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                
+                // Add magnetic effect to nearby particles
+                particles.forEach(particle => {
+                    const dx = mouse.x - particle.x;
+                    const dy = mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        const force = (150 - distance) / 150;
+                        particle.x += (dx / distance) * force * 0.5;
+                        particle.y += (dy / distance) * force * 0.5;
+                    }
+                });
+            });
+
+            // Initialize
+            createParticles();
+            animate();
+
+            // Recreate particles on resize
+            window.addEventListener('resize', () => {
+                createParticles();
+            });
+
+            // Fade-in animations
+            const faders = document.querySelectorAll('.section-fade-in');
+            const faderObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            faders.forEach(section => faderObserver.observe(section));
+
+            // Mobile menu
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            const openMenu = () => mobileMenu.classList.add('open');
+            const closeMenu = () => mobileMenu.classList.remove('open');
+            hamburgerButton.addEventListener('click', openMenu);
+            closeMenuButton.addEventListener('click', closeMenu);
+            mobileMenuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            // Carousel
+            const carouselContainer = document.getElementById('carousel-container');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            if (carouselContainer) {
+                 nextBtn.addEventListener('click', () => {
+                    const scrollAmount = carouselContainer.querySelector('.carousel-item').offsetWidth;
+                    carouselContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+
+                prevBtn.addEventListener('click', () => {
+                     const scrollAmount = carouselContainer.querySelector('.carousel-item').offsetWidth;
+                    carouselContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
