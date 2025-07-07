@@ -9,7 +9,7 @@
 <body class="bg-gray-100 flex items-center justify-center h-screen font-sans">
   <div class="bg-white p-8 rounded shadow-md w-full max-w-sm">
     <h1 class="text-2xl font-bold mb-6 text-center">Dojo Login</h1>
-    <form>
+    <form id="login-form">
       <div class="mb-4">
         <label for="username" class="block text-sm font-medium mb-2">Usuario</label>
         <input type="text" id="username" class="w-full border-gray-300 rounded px-3 py-2" placeholder="Usuario">
@@ -18,8 +18,22 @@
         <label for="password" class="block text-sm font-medium mb-2">Contraseña</label>
         <input type="password" id="password" class="w-full border-gray-300 rounded px-3 py-2" placeholder="Contraseña">
       </div>
-      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Ingresar</button>
+      <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 mb-2">Ingresar</button>
     </form>
+    <a href="https://example.us1.list-manage.com/subscribe/post?u=ID&amp;id=LIST" target="_blank" class="block text-center bg-gray-200 text-gray-700 py-2 rounded hover:bg-gray-300">Registrarme</a>
   </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === 'dojo' && password === 'dojo123') {
+        alert('Bienvenido al Dojo!');
+      } else {
+        alert('Credenciales incorrectas');
+      }
+    });
+  </script>
 </body>
 </html>
