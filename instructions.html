@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrucciones de Uso - BlueLobsters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-4">⚠️ Problema de Configuración</h1>
+            <p class="text-gray-600">Para que el sistema de autenticación funcione correctamente, debes usar el servidor local.</p>
+        </div>
+
+        <div class="space-y-6">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                <h3 class="font-bold text-red-800 mb-2">❌ Incorrecto:</h3>
+                <p class="text-red-700">Abrir archivos HTML directamente desde el explorador (protocolo file://)</p>
+            </div>
+
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                <h3 class="font-bold text-green-800 mb-2">✅ Correcto:</h3>
+                <p class="text-green-700">Usar el servidor local en http://localhost:3000</p>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+                <h3 class="font-bold text-blue-800 mb-4">📋 Pasos para solucionarlo:</h3>
+                <ol class="list-decimal list-inside space-y-2 text-blue-700">
+                    <li>Abre una terminal/línea de comandos</li>
+                    <li>Navega a la carpeta del proyecto</li>
+                    <li>Ejecuta: <code class="bg-blue-100 px-2 py-1 rounded">npm start</code></li>
+                    <li>Abre tu navegador en: <a href="http://localhost:3000" class="underline font-bold">http://localhost:3000</a></li>
+                </ol>
+            </div>
+
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <h3 class="font-bold text-yellow-800 mb-2">🔧 Si tienes problemas:</h3>
+                <ul class="list-disc list-inside space-y-1 text-yellow-700">
+                    <li>Asegúrate de tener Node.js instalado</li>
+                    <li>Ejecuta <code class="bg-yellow-100 px-1 rounded">npm install</code> primero</li>
+                    <li>Verifica que el puerto 3000 esté libre</li>
+                    <li>Revisa la consola por errores</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center mt-8">
+            <button onclick="location.reload()" class="bg-blue-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-600 transition-colors">
+                Reintentar
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Auto-redirect if server becomes available
+        async function checkServer() {
+            try {
+                const response = await fetch('http://localhost:3000/api/health');
+                if (response.ok) {
+                    window.location.href = 'http://localhost:3000';
+                }
+            } catch (error) {
+                // Server not available, keep checking
+                setTimeout(checkServer, 3000);
+            }
+        }
+
+        // Start checking after 2 seconds
+        setTimeout(checkServer, 2000);
+    </script>
+</body>
+</html>

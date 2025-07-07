@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | BlueLobsters™ Insights</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FFFFFF;
+            color: #0B0B0B;
+        }
+        .blue-lobster-blue { color: #0071FF; }
+        .blue-lobster-bg { background-color: #0071FF; }
+        .deep-black { color: #0B0B0B; }
+        
+        /* Particle Background Styles */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: #161713;
+        }
+        
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+        
+        .blog-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/101ac63fde7dfa0f421984775/df1e169cd4eed4b11a4e08bf0.js");</script>
+    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #mc_embed_signup{background:#fff; false;clear:left; font:14px Helvetica,Arial,sans-serif; width: 100%;}
+        .mc-field-group input {width: 96% !important;}
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-x-8">
+                <a href="index.html" class="text-xl font-black flex items-center gap-2 uppercase">
+                    BlueLobsters™
+                    <span class="text-xs font-bold blue-lobster-blue opacity-80 normal-case">| Rare is a Feature</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html#posicionamiento" class="text-gray-600 hover:blue-lobster-blue">La Ventaja</a>
+                    <a href="index.html#programa" class="text-gray-600 hover:blue-lobster-blue">El Programa</a>
+                    <a href="blog.html" class="blue-lobster-blue font-bold">Blog</a>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center">
+                <button id="dojo-access-btn" class="bg-blue-lobster-bg text-white font-bold py-2 px-5 rounded-lg text-sm hover:bg-blue-800 transition-colors">
+                    <i class="fas fa-door-open mr-2"></i>Dojo
+                </button>
+            </div>
+            <button id="hamburger-button" class="md:hidden text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 w-full sm:w-80 h-full bg-gray-900 text-white z-50 p-8 flex flex-col">
+        <button id="close-menu-button" class="self-end text-3xl mb-8">&times;</button>
+        <div class="flex flex-col space-y-6 text-xl text-center">
+            <a href="index.html#posicionamiento" class="mobile-menu-link hover:blue-lobster-blue">La Ventaja</a>
+            <a href="index.html#programa" class="mobile-menu-link hover:blue-lobster-blue">El Programa</a>
+            <a href="blog.html" class="mobile-menu-link blue-lobster-blue font-bold">Blog</a>
+            <button id="dojo-access-mobile-btn" class="mobile-menu-link bg-blue-lobster-bg py-2 px-4 rounded-lg mt-8">Dojo</button>
+        </div>
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32 text-white bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-black leading-tight mb-4 section-fade-in">BlueLobster Insights</h1>
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 section-fade-in" style="transition-delay: 150ms;">
+                    Pensamientos disruptivos, estrategias de vanguardia y la evolución del liderazgo en la era de la IA
+                </p>
+                <div class="flex justify-center items-center space-x-4 section-fade-in" style="transition-delay: 300ms;">
+                    <span class="text-gray-400">Suscríbete para recibir insights exclusivos</span>
+                    <button class="open-popup blue-lobster-bg text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-800 transition-colors">
+                        <i class="fas fa-envelope-open-text mr-2"></i>Suscribirse
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Posts Grid -->
+        <section class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    
+                    <!-- Blog Post 1 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden">
+                        <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">29 Dic 2024</span>
+                                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-1 rounded">Estrategia</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_001.html" class="hover:blue-lobster-blue transition-colors">
+                                    El Fin de la Estrategia Tradicional: Por qué la IA Redefine las Reglas del Juego
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Las métricas que usabas ayer ya no sirven mañana. Descubre cómo los AI Vibe Architects están creando ventajas competitivas que la competencia ni siquiera puede ver.
+                            </p>
+                            <a href="blog_post_001.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden" style="transition-delay: 100ms;">
+                        <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">25 Dic 2024</span>
+                                <span class="bg-green-100 text-green-800 text-xs font-semibold px-2 py-1 rounded">Técnico</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_002.html" class="hover:blue-lobster-blue transition-colors">
+                                    Prompt Engineering: El Arte de Programar Creatividad
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                No es solo escribir instrucciones. Es diseñar sistemas de pensamiento que amplifican tu visión estratégica y convierten la intuición en algoritmos ejecutables.
+                            </p>
+                            <a href="blog_post_002.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden" style="transition-delay: 200ms;">
+                        <div class="h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">20 Dic 2024</span>
+                                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-2 py-1 rounded">Branding</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_003.html" class="hover:blue-lobster-blue transition-colors">
+                                    Brand Vibe Engineering: Cuando tu Marca se Convierte en Código
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Tu identidad de marca ya no es solo visual. Es un sistema cognitivo que se adapta, aprende y evoluciona. Así es como codificas tu ADN empresarial.
+                            </p>
+                            <a href="blog_post_003.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 4 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden" style="transition-delay: 300ms;">
+                        <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center">
+                            <i class="fas fa-cogs text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">15 Dic 2024</span>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 py-1 rounded">Automatización</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_004.html" class="hover:blue-lobster-blue transition-colors">
+                                    Automatización Inteligente: Más Allá de los Workflows Simples
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                La próxima evolución no son las automatizaciones que ejecutan tareas, sino las que toman decisiones estratégicas. Descubre cómo construir sistemas que piensan.
+                            </p>
+                            <a href="blog_post_004.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 5 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden" style="transition-delay: 400ms;">
+                        <div class="h-48 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">10 Dic 2024</span>
+                                <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">Métricas</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_005.html" class="hover:blue-lobster-blue transition-colors">
+                                    El ROI de la Rareza: Cómo Medir lo Imposible de Copiar
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Las métricas tradicionales miden el pasado. Los Blue Lobsters necesitan KPIs que predigan el futuro y cuantifiquen la diferenciación. Este es el framework.
+                            </p>
+                            <a href="blog_post_005.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 6 -->
+                    <article class="blog-card section-fade-in bg-white rounded-lg shadow-lg overflow-hidden" style="transition-delay: 500ms;">
+                        <div class="h-48 bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+                            <i class="fas fa-network-wired text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="text-sm text-gray-500 font-medium">05 Dic 2024</span>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-2 py-1 rounded">Ecosistemas</span>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">
+                                <a href="blog_post_006.html" class="hover:blue-lobster-blue transition-colors">
+                                    Arquitectura de Ecosistemas IA: Construyendo Redes que Aprenden
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                                Tu empresa no es una máquina, es un organismo. Aprende a diseñar ecosistemas de IA que evolucionan, se adaptan y crean valor exponencial sin intervención humana.
+                            </p>
+                            <a href="blog_post_006.html" class="text-blue-600 font-medium hover:text-blue-800 text-sm flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </a>
+                        </div>
+                    </article>
+
+                </div>
+                
+                <!-- Newsletter Subscription -->
+                <div class="max-w-2xl mx-auto mt-16 text-center section-fade-in">
+                    <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold mb-4">Sé el Primero en Conocer Nuevos Insights</h3>
+                        <p class="text-gray-600 mb-6">Recibe contenido exclusivo y estrategias avanzadas directo en tu bandeja de entrada.</p>
+                        <button class="open-popup bg-blue-lobster-bg text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-800 transition-colors inline-block">
+                            <i class="fas fa-envelope-open-text mr-3"></i>Unirse al Newsletter
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://walink.co/3b8320" target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transform hover:scale-110 transition-transform z-40">
+        <i class="fab fa-whatsapp text-4xl"></i>
+    </a>
+
+    <footer class="bg-gray-800 text-gray-400 py-6">
+        <div class="container mx-auto px-6 text-center text-sm">
+            <p>&copy; 2025 BlueLobsters™. Todos los derechos reservados. | <a href="index.html" class="hover:text-white">Volver al Programa</a></p>
+        </div>
+    </footer>
+
+    <!-- Mailchimp Popup -->
+    <div id="mailchimp-popup" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-lg w-full relative">
+            <button id="close-popup-button" class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            <div id="mc_embed_signup">
+                <form action="https://imaquinua.us22.list-manage.com/subscribe/post?u=101ac63fde7dfa0f421984775&amp;id=a3f018e3e6&amp;f_id=0066c5e1f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+                    <div id="mc_embed_signup_scroll">
+                        <h2>Suscríbete a BlueLobster Insights</h2>
+                        <div class="indicates-required"><span class="asterisk">*</span> es obligatorio</div>
+                        <div class="mc-field-group"><label for="mce-EMAIL">Email <span class="asterisk">*</span></label><input type="email" name="EMAIL" class="required email" id="mce-EMAIL" required="" value=""></div>
+                        <div class="mc-field-group"><label for="mce-FNAME">Nombre </label><input type="text" name="FNAME" class=" text" id="mce-FNAME" value=""></div>
+                        <div id="mce-responses" class="clear foot">
+                            <div class="response" id="mce-error-response" style="display: none;"></div>
+                            <div class="response" id="mce-success-response" style="display: none;"></div>
+                        </div>
+                        <div aria-hidden="true" style="position: absolute; left: -5000px;">
+                            <input type="text" name="b_101ac63fde7dfa0f421984775_a3f018e3e6" tabindex="-1" value="">
+                        </div>
+                        <div class="optionalParent">
+                            <div class="clear foot">
+                                <input type="submit" name="subscribe" id="mc-embedded-subscribe" class="button" value="Suscribirme">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+        </div>
+    </div>
+
+    <!-- Auth Popup -->
+    <div id="auth-popup" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full relative">
+            <button id="close-auth-popup" class="absolute top-4 right-4 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
+            
+            <!-- Login Form -->
+            <div id="login-form" class="auth-form">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Acceso al Dojo</h2>
+                    <p class="text-gray-600 mt-2">Ingresa tus credenciales para continuar</p>
+                </div>
+                
+                <form id="login-form-element">
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="login-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+                        <input type="password" id="login-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div id="login-error" class="text-red-500 text-sm mb-4 hidden"></div>
+                    <button type="submit" class="w-full bg-blue-lobster-bg text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800 transition-colors">
+                        Iniciar Sesión
+                    </button>
+                </form>
+                
+                <div class="text-center mt-4">
+                    <button id="show-register" class="text-blue-600 hover:text-blue-800 text-sm">
+                        ¿No tienes cuenta? Regístrate aquí
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Register Form -->
+            <div id="register-form" class="auth-form hidden">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Crear Cuenta</h2>
+                    <p class="text-gray-600 mt-2">Únete a la comunidad BlueLobster</p>
+                </div>
+                
+                <form id="register-form-element">
+                    <div class="mb-4">
+                        <label for="register-name" class="block text-sm font-medium text-gray-700 mb-2">Nombre Completo</label>
+                        <input type="text" id="register-name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="register-email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" id="register-email" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="register-password" class="block text-sm font-medium text-gray-700 mb-2">Contraseña</label>
+                        <input type="password" id="register-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required minlength="6">
+                    </div>
+                    <div class="mb-6">
+                        <label for="register-confirm-password" class="block text-sm font-medium text-gray-700 mb-2">Confirmar Contraseña</label>
+                        <input type="password" id="register-confirm-password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500" required minlength="6">
+                    </div>
+                    <div id="register-error" class="text-red-500 text-sm mb-4 hidden"></div>
+                    <button type="submit" class="w-full bg-blue-lobster-bg text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800 transition-colors">
+                        Crear Cuenta
+                    </button>
+                </form>
+                
+                <div class="text-center mt-4">
+                    <button id="show-login" class="text-blue-600 hover:text-blue-800 text-sm">
+                        ¿Ya tienes cuenta? Inicia sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Particles Animation (same as index.html)
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 2;
+                    this.speedY = (Math.random() - 0.5) * 2;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.color = `rgba(0, 113, 255, ${this.opacity})`;
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    if (this.x > canvas.width) this.x = 0;
+                    if (this.x < 0) this.x = canvas.width;
+                    if (this.y > canvas.height) this.y = 0;
+                    if (this.y < 0) this.y = canvas.height;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+            }
+
+            function createParticles() {
+                particles = [];
+                const numberOfParticles = Math.floor((canvas.width * canvas.height) / 15000);
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawConnections() {
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            const opacity = (100 - distance) / 100 * 0.3;
+                            ctx.strokeStyle = `rgba(0, 113, 255, ${opacity})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                drawConnections();
+                animationId = requestAnimationFrame(animate);
+            }
+
+            let mouse = { x: null, y: null };
+            canvas.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                particles.forEach(particle => {
+                    const dx = mouse.x - particle.x;
+                    const dy = mouse.y - particle.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 150) {
+                        const force = (150 - distance) / 150;
+                        particle.x += (dx / distance) * force * 0.5;
+                        particle.y += (dy / distance) * force * 0.5;
+                    }
+                });
+            });
+
+            createParticles();
+            animate();
+            window.addEventListener('resize', () => {
+                createParticles();
+            });
+
+            // Fade-in animations
+            const faders = document.querySelectorAll('.section-fade-in');
+            const faderObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            faders.forEach(section => faderObserver.observe(section));
+
+            // Mobile menu
+            const hamburgerButton = document.getElementById('hamburger-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+            const openMenu = () => mobileMenu.classList.add('open');
+            const closeMenu = () => mobileMenu.classList.remove('open');
+            hamburgerButton.addEventListener('click', openMenu);
+            closeMenuButton.addEventListener('click', closeMenu);
+            mobileMenuLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            // Mailchimp Popup Logic
+            const mailchimpPopup = document.getElementById('mailchimp-popup');
+            const closePopupButton = document.getElementById('close-popup-button');
+            const openPopupButtons = document.querySelectorAll('.open-popup');
+
+            const openPopup = () => mailchimpPopup.classList.remove('hidden');
+            const closePopup = () => mailchimpPopup.classList.add('hidden');
+
+            openPopupButtons.forEach(btn => btn.addEventListener('click', openPopup));
+            closePopupButton.addEventListener('click', closePopup);
+            mailchimpPopup.addEventListener('click', (e) => {
+                if (e.target === mailchimpPopup) {
+                    closePopup();
+                }
+            });
+
+            // Auth System (same as index.html)
+            const authPopup = document.getElementById('auth-popup');
+            const closeAuthPopup = document.getElementById('close-auth-popup');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+            const showRegisterBtn = document.getElementById('show-register');
+            const showLoginBtn = document.getElementById('show-login');
+            const dojoAccessBtn = document.getElementById('dojo-access-btn');
+            const dojoAccessMobileBtn = document.getElementById('dojo-access-mobile-btn');
+            const loginFormElement = document.getElementById('login-form-element');
+            const registerFormElement = document.getElementById('register-form-element');
+
+            function showAuthPopup() {
+                authPopup.classList.remove('hidden');
+                showLoginForm();
+            }
+
+            function hideAuthPopup() {
+                authPopup.classList.add('hidden');
+                clearAuthForms();
+            }
+
+            function showLoginForm() {
+                loginForm.classList.remove('hidden');
+                registerForm.classList.add('hidden');
+                clearAuthForms();
+            }
+
+            function showRegisterForm() {
+                loginForm.classList.add('hidden');
+                registerForm.classList.remove('hidden');
+                clearAuthForms();
+            }
+
+            function clearAuthForms() {
+                document.getElementById('login-error').classList.add('hidden');
+                document.getElementById('register-error').classList.add('hidden');
+                loginFormElement.reset();
+                registerFormElement.reset();
+            }
+
+            function showError(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+
+            function isAuthenticated() {
+                return localStorage.getItem('bluelobster_authenticated') === 'true';
+            }
+
+            function authenticateUser(email, name = null) {
+                localStorage.setItem('bluelobster_authenticated', 'true');
+                localStorage.setItem('bluelobster_user_email', email);
+                if (name) {
+                    localStorage.setItem('bluelobster_user_name', name);
+                }
+            }
+
+            function getUsers() {
+                const users = localStorage.getItem('bluelobster_users');
+                return users ? JSON.parse(users) : {};
+            }
+
+            function saveUser(email, password, name) {
+                const users = getUsers();
+                users[email] = { password: password, name: name };
+                localStorage.setItem('bluelobster_users', JSON.stringify(users));
+            }
+
+            function validateUser(email, password) {
+                const users = getUsers();
+                return users[email] && users[email].password === password;
+            }
+
+            function accessDojo() {
+                if (isAuthenticated()) {
+                    window.location.href = 'dojo.html';
+                } else {
+                    showAuthPopup();
+                }
+            }
+
+            dojoAccessBtn.addEventListener('click', accessDojo);
+            dojoAccessMobileBtn.addEventListener('click', accessDojo);
+            closeAuthPopup.addEventListener('click', hideAuthPopup);
+            showRegisterBtn.addEventListener('click', showRegisterForm);
+            showLoginBtn.addEventListener('click', showLoginForm);
+
+            authPopup.addEventListener('click', (e) => {
+                if (e.target === authPopup) {
+                    hideAuthPopup();
+                }
+            });
+
+            loginFormElement.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                if (validateUser(email, password)) {
+                    const users = getUsers();
+                    authenticateUser(email, users[email].name);
+                    hideAuthPopup();
+                    window.location.href = 'dojo.html';
+                } else {
+                    showError('login-error', 'Email o contraseña incorrectos');
+                }
+            });
+
+            registerFormElement.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+
+                if (password !== confirmPassword) {
+                    showError('register-error', 'Las contraseñas no coinciden');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    showError('register-error', 'La contraseña debe tener al menos 6 caracteres');
+                    return;
+                }
+
+                const users = getUsers();
+                if (users[email]) {
+                    showError('register-error', 'Ya existe una cuenta con este email');
+                    return;
+                }
+
+                saveUser(email, password, name);
+                authenticateUser(email, name);
+                hideAuthPopup();
+                window.location.href = 'dojo.html';
+            });
+        });
+    </script>
+</body>
+</html>
